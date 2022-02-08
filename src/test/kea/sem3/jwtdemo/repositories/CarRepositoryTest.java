@@ -21,8 +21,8 @@ class CarRepositoryTest {
 
     @BeforeAll
     static void setUp(@Autowired CarRepository carRepository) {
-        carRav4 = carRepository.save(new Car(CarBrand.TOYOTA,"RAV4",900)).getId();
-        carPolo = carRepository.save(new Car(CarBrand.WW,"Polo",500)).getId();
+        carRav4 = carRepository.save(new Car(CarBrand.TOYOTA,"RAV4",900,10)).getId();
+        carPolo = carRepository.save(new Car(CarBrand.WW,"Polo",500,10)).getId();
     }
 
     @Test

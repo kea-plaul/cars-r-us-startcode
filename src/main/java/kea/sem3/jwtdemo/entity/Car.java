@@ -4,8 +4,11 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
@@ -17,10 +20,11 @@ public class Car {
     int id;
     public Car() {}
 
-    public Car(CarBrand brand, String model, double pricePrDay) {
+    public Car(CarBrand brand, String model, double pricePrDay,double discount) {
         this.brand = brand;
         this.model = model;
         this.pricePrDay = pricePrDay;
+        this.bestDiscount = discount;
     }
 
     @Enumerated(EnumType.STRING)
@@ -31,4 +35,13 @@ public class Car {
 
     double pricePrDay;
 
-}
+    //Best discount price (percent fo pricePrDay) an admin can offer
+    double bestDiscount;
+
+    @CreationTimestamp
+    LocalDateTime created;
+
+    @UpdateTimestamp
+    LocalDateTime edited;
+
+    }
