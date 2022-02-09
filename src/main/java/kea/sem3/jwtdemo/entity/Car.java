@@ -1,5 +1,6 @@
 package kea.sem3.jwtdemo.entity;
 
+import kea.sem3.jwtdemo.dto.CarRequest;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,15 +21,20 @@ public class Car {
     int id;
     public Car() {}
 
-    public Car(CarBrand brand, String model, double pricePrDay,double discount) {
+    public Car(String brand, String model, double pricePrDay,double discount) {
         this.brand = brand;
         this.model = model;
         this.pricePrDay = pricePrDay;
         this.bestDiscount = discount;
     }
+    public Car(CarRequest body) {
+        this.brand = body.getBrand();
+        this.model = body.getModel();
+        this.pricePrDay = body.getPricePrDay();
+        this.bestDiscount = body.getBestDiscount();
+    }
 
-    @Enumerated(EnumType.STRING)
-    CarBrand brand;
+    String brand;
 
     @Column(length = 60)
     String model;

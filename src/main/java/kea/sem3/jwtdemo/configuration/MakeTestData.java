@@ -44,12 +44,12 @@ public class MakeTestData implements ApplicationRunner {
         memberRespository.save(new Member("KW","kw@a.dk","test12","Kurt","Wonnegut","Lyngbyvje 34","Lyngby","2800"));
         memberRespository.save(new Member("HW","hw@a.dk","test12","Hanne","Wonnegut","Lyngbyvje 34","Lyngby","2800"));
 
-        carRepository.save(new Car(CarBrand.VOLVO, "C40", 560,10));
-        carRepository.save(new Car(CarBrand.VOLVO, "V70", 500,10));
-        carRepository.save(new Car(CarBrand.VOLVO, "V49", 400,10));
-        carRepository.save(new Car(CarBrand.SUZUKI, "Vitara", 500,14));
-        carRepository.save(new Car(CarBrand.SUZUKI, "Vitara", 500,14));
-        carRepository.save(new Car(CarBrand.SUZUKI, "S-Cross", 500,14));
+        carRepository.save(new Car("Volvo", "C40", 560,10));
+        carRepository.save(new Car("Volvo", "V70", 500,10));
+        carRepository.save(new Car("Volvo", "V49", 400,10));
+        carRepository.save(new Car("Suzuki", "Vitara", 500,14));
+        carRepository.save(new Car("Suzuki", "Vitara", 500,14));
+        carRepository.save(new Car("Suzuki", "S-Cross", 500,14));
 
         System.out.println("########################################################################################");
         System.out.println("########################################################################################");
