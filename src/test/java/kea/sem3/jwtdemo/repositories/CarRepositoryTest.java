@@ -27,8 +27,8 @@ class CarRepositoryTest {
     @Test
     void findCarByID() {
         Car rav4 = carRepository.findById(carRav4).orElse(null);
-        //assertEquals("RAV4",rav4.getModel());
-        assertEquals("RAV",rav4.getModel());
+        assertEquals("RAV4",rav4.getModel());
+        //assertEquals("RAV",rav4.getModel());
 
     }
 }
