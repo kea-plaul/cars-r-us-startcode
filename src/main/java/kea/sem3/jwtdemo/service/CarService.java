@@ -14,8 +14,12 @@ public class CarService {
     CarRepository carRepository;
 
     public CarService(CarRepository carRepository) {
+
         this.carRepository = carRepository;
     }
+
+
+
     public List<CarResponse> getCars(){
         List<Car> cars =  carRepository.findAll();
         return CarResponse.getCarsFromEntities(cars);
@@ -31,6 +35,7 @@ public class CarService {
     public CarResponse editCar(CarRequest body,int id){
         return null;
     }
+
     public void deleteCar(int id) {
 
     }

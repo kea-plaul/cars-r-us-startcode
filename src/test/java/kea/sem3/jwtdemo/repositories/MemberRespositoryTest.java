@@ -29,6 +29,7 @@ class MemberRespositoryTest {
      */
     @BeforeAll
     static void setUp(@Autowired MemberRespository memberRespository) {
+
         memberRespository.save(new Member("aa","aa@a.dk","test12","Kurt","Wonnegut","a vej 12","Lyngby","2800"));
         memberRespository.save(new Member("bb","bb@a.dk","test12","Hanne","Wonnegut","b vej 12","Lyngby","2800"));
     }

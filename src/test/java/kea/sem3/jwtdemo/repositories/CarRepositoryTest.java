@@ -20,6 +20,7 @@ class CarRepositoryTest {
 
     @BeforeAll
     static void setUp(@Autowired CarRepository carRepository) {
+        carRepository.deleteAll();
         carRav4 = carRepository.save(new Car("Toyota","RAV4",900,10)).getId();
         carPolo = carRepository.save(new Car("WW","Polo",500,10)).getId();
     }
@@ -28,7 +29,7 @@ class CarRepositoryTest {
     void findCarByID() {
         Car rav4 = carRepository.findById(carRav4).orElse(null);
         //assertEquals("RAV4",rav4.getModel());
-        assertEquals("RAV",rav4.getModel());
+        assertEquals("RAV4",rav4.getModel());
 
     }
 }
