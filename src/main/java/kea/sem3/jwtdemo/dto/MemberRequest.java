@@ -9,10 +9,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CarRequest {
-    private String brand;
-    private String model;
-    private double pricePrDay;
-    private double bestDiscount;
+public class MemberRequest {
+    private String firstName;
+    private String lastName;
+    private String street;
+    private String city;
+    private String zip;
 }
-

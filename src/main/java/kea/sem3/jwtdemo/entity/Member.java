@@ -1,6 +1,9 @@
 package kea.sem3.jwtdemo.entity;
 
+import kea.sem3.jwtdemo.dto.CarRequest;
+import kea.sem3.jwtdemo.dto.MemberRequest;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -10,7 +13,9 @@ import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
+@NoArgsConstructor
 public class Member extends BaseUser {
 
     //Make sure you understand why there is no @Id annotation in this class, and the SINGLE table created in the database
@@ -53,6 +58,12 @@ public class Member extends BaseUser {
         isApproved = false;
     }
 
-    public Member() {}
+    public Member(MemberRequest body) {
+        this.firstName = body.getFirstName();
+        this.lastName = body.getLastName();
+        this.street = body.getStreet();
+        this.city = body.getCity();
+        this.zip = body.getZip();
+    }
 
 }

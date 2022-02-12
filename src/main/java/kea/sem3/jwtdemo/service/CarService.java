@@ -29,10 +29,13 @@ public class CarService {
         return new CarResponse(carNew,true);
     }
     public CarResponse editCar(CarRequest body,int id){
-        return null;
+        Car carToEdit = new Car(body);
+        carToEdit.setId(id);
+        carRepository.save(carToEdit);
+        return new CarResponse(carToEdit,true);
     }
     public void deleteCar(int id) {
-
+        carRepository.deleteById(id);
     }
 }
 
