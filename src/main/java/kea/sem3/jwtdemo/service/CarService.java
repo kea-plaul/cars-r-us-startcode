@@ -18,8 +18,6 @@ public class CarService {
         this.carRepository = carRepository;
     }
 
-
-
     public List<CarResponse> getCars(){
         List<Car> cars =  carRepository.findAll();
         return CarResponse.getCarsFromEntities(cars);

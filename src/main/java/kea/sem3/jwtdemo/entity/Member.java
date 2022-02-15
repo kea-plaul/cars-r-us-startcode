@@ -1,5 +1,6 @@
 package kea.sem3.jwtdemo.entity;
 
+import kea.sem3.jwtdemo.dto.MemberRequest;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -48,9 +49,13 @@ public class Member extends BaseUser {
         this.street = street;
         this.city = city;
         this.zip = zip;
-        addRole(Role.USER);
         ranking = 5; //Initial ranking
         isApproved = false;
+    }
+
+    public Member(MemberRequest body) {
+        //Just call the constructor above
+        this(body.getUsername(),body.getEmail(),body.getPassword(),body.getFirstName(),body.getLastName(),body.getStreet(),body.getCity(),body.getZip());
     }
 
     public Member() {}
