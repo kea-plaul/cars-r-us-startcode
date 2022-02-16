@@ -1,5 +1,6 @@
 package kea.sem3.jwtdemo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import kea.sem3.jwtdemo.dto.CarRequest;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -10,6 +11,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter @Setter
@@ -19,6 +23,7 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+
     public Car() {}
 
     public Car(String brand, String model, double pricePrDay,double discount) {
@@ -50,4 +55,6 @@ public class Car {
     @UpdateTimestamp
     LocalDateTime edited;
 
+    @OneToMany(mappedBy = "car")
+    Set<Reservation> reservation = new HashSet<>();
     }

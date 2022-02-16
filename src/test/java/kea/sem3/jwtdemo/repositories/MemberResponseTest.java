@@ -2,12 +2,10 @@ package kea.sem3.jwtdemo.repositories;
 
 import kea.sem3.jwtdemo.entity.Member;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.hamcrest.Matchers.containsInAnyOrder;
@@ -18,17 +16,17 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
 @DataJpaTest  // Make SUREEEEE you understand ALL the things you get from this annotation
-class MemberRespositoryTest {
+class MemberResponseTest {
 
     @Autowired
-    MemberRespository memberRespository;
+    MemberRepository memberRespository;
 
     /*
     Make sure you understand the difference between @BeforeEach and @BeforeAll and
     why @BeforeAll here ensures the SAME DATA for ALL tests
      */
     @BeforeAll
-    static void setUp(@Autowired MemberRespository memberRespository) {
+    static void setUp(@Autowired MemberRepository memberRespository) {
         memberRespository.save(new Member("aa","aa@a.dk","test12","Kurt","Wonnegut","a vej 12","Lyngby","2800"));
         memberRespository.save(new Member("bb","bb@a.dk","test12","Hanne","Wonnegut","b vej 12","Lyngby","2800"));
     }

@@ -1,5 +1,6 @@
 package kea.sem3.jwtdemo.entity;
 
+import kea.sem3.jwtdemo.dto.MemberRequest;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
@@ -7,7 +8,10 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter @Setter
@@ -53,6 +57,13 @@ public class Member extends BaseUser {
         isApproved = false;
     }
 
-    public Member() {}
+    public Member(MemberRequest body) {
+        //Just call the constructor above
+        this(body.getUsername(),body.getEmail(),body.getPassword(),body.getFirstName(),body.getLastName(),body.getStreet(),body.getCity(),body.getZip());
+    }
 
+    public Member(){}
+
+    @OneToMany(mappedBy = "member")
+    Set<Reservation> reservation = new HashSet<>();
 }
