@@ -1,7 +1,9 @@
 package kea.sem3.jwtdemo.service;
 
+import kea.sem3.jwtdemo.dto.CarRequest;
 import kea.sem3.jwtdemo.dto.MemberRequest;
 import kea.sem3.jwtdemo.dto.MemberResponse;
+import kea.sem3.jwtdemo.entity.Car;
 import kea.sem3.jwtdemo.entity.Member;
 import kea.sem3.jwtdemo.entity.Role;
 import kea.sem3.jwtdemo.error.Client4xxException;
@@ -44,4 +46,5 @@ public class MemberService {
         member = memberRepository.save(member);
         return new MemberResponse(member.getUsername(), member.getCreated(), member.getRoles());
     }
+
 }

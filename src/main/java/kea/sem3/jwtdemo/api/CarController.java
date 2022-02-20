@@ -29,11 +29,19 @@ public class CarController {
 
     @PostMapping
     public CarResponse addCar(@RequestBody CarRequest body){
-       return carService.addCar(body);
+        return carService.addCar(body);
     }
 
     @PutMapping("/{id}")
-    public CarResponse editCar(@RequestBody CarRequest body, @PathVariable int id){return null;}
+    public CarResponse editCar(@RequestBody CarRequest body, @PathVariable int id){
+        return carService.editCar(body,id);
+    }
+
+    @PatchMapping ("/{id}/{newprice}")
+    public void editPrice(@PathVariable int id,@PathVariable double newprice) throws Exception {
+        carService.updatePrice(id,newprice);
+    }
+
 
     @DeleteMapping("/{id}")
     public void deleteCar(@PathVariable int id){}
