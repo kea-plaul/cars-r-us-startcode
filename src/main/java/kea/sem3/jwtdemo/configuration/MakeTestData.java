@@ -44,8 +44,12 @@ public class MakeTestData implements ApplicationRunner {
         userRepository.save(both);
 
 
-        Member m1 = memberRepository.save(new Member("KW","kw@a.dk","test12","Kurt","Wonnegut","Lyngbyvje 34","Lyngby","2800"));
-        Member m2 = memberRepository.save(new Member("HW","hw@a.dk","test12","Hanne","Wonnegut","Lyngbyvje 34","Lyngby","2800"));
+        Member m1 = new Member("kw","kw@a.dk","test12","Kurt","Wonnegut","Lyngbyvje 34","Lyngby","2800");
+        m1.addRole(Role.USER);
+        Member m2 = new Member("hw","hw@a.dk","test12","Hanne","Wonnegut","Lyngbyvje 34","Lyngby","2800");
+        m2.addRole(Role.USER);
+        memberRepository.save(m1);
+        memberRepository.save(m2);
 
         Car carVolvo = carRepository.save(new Car("Volvo", "C40", 560,10));
         carRepository.save(new Car("Volvo", "V70", 500,10));
