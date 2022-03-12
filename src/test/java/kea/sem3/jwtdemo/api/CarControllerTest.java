@@ -57,7 +57,7 @@ class CarControllerTest {
         //Create user(s) needed to login to get a token for protected endpoints
         userRepository.deleteAll();
         admin = new BaseUser("xxx-user","a@b.dk","test12");
-        admin.addRole(Role.USER);
+        admin.addRole(Role.ADMIN);
         userRepository.save(admin);
     }
 
