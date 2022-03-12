@@ -42,8 +42,6 @@ class CarControllerTest {
     @Autowired
     UserRepository userRepository;
 
-    //Do something here
-
     @Autowired
     private ObjectMapper objectMapper;
 
