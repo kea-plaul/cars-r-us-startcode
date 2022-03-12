@@ -1,10 +1,14 @@
 package kea.sem3.jwtdemo.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import kea.sem3.jwtdemo.TestUtils;
 import kea.sem3.jwtdemo.dto.CarRequest;
 import kea.sem3.jwtdemo.dto.CarResponse;
+import kea.sem3.jwtdemo.entity.BaseUser;
 import kea.sem3.jwtdemo.entity.Car;
+import kea.sem3.jwtdemo.entity.Role;
 import kea.sem3.jwtdemo.repositories.CarRepository;
+import kea.sem3.jwtdemo.security.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +39,9 @@ class CarControllerTest {
     @Autowired
     CarRepository carRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     //Do something here
 
     @Autowired
@@ -42,11 +49,18 @@ class CarControllerTest {
 
     static int carFordId, carSuzukiId;
 
+    BaseUser admin;
     @BeforeEach
-    public void setup() {
+    public void setup() throws Exception {
         carRepository.deleteAll();
         carFordId = carRepository.save(new Car("Ford", "Focus", 400, 10)).getId();
         carSuzukiId = carRepository.save(new Car("Suzuki", "Vitara", 500, 14)).getId();
+
+        //Create user(s) needed to login to get a token for protected endpoints
+        userRepository.deleteAll();
+        admin = new BaseUser("xxx-user","a@b.dk","test12");
+        admin.addRole(Role.ADMIN);
+        userRepository.save(admin);
     }
 
     @Test
@@ -67,6 +81,7 @@ class CarControllerTest {
                 .andExpect(MockMvcResultMatchers.jsonPath("$.model").value("Focus"));
 
     }
+
 
     @Test
     public void testAllCars() throws Exception {
@@ -92,9 +107,12 @@ class CarControllerTest {
     public void testAddCar() throws Exception {
         CarRequest newCar = new CarRequest("WW", "Polo", 200, 10);
        // System.out.println("XXXXXXX"+objectMapper.writeValueAsString(newCar));
+        //Login and get the token
+        String adminToken = TestUtils.login("xxx-user","test12",mockMvc);
         mockMvc.perform(MockMvcRequestBuilders.post("/api/cars")
                         .contentType("application/json")
                         .accept("application/json")
+                        .header("Authorization","Bearer "+adminToken) // //Add token to the request
                         .content(objectMapper.writeValueAsString(newCar)))
                 .andDo(print())
                 .andExpect(status().isOk())
