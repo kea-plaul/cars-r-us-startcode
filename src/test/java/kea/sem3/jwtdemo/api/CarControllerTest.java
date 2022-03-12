@@ -59,7 +59,7 @@ class CarControllerTest {
         //Create user(s) needed to login to get a token for protected endpoints
         userRepository.deleteAll();
         admin = new BaseUser("xxx-user","a@b.dk","test12");
-        admin.addRole(Role.ADMIN);
+        admin.addRole(Role.USER);
         userRepository.save(admin);
     }
 
@@ -106,7 +106,6 @@ class CarControllerTest {
     @Test
     public void testAddCar() throws Exception {
         CarRequest newCar = new CarRequest("WW", "Polo", 200, 10);
-       // System.out.println("XXXXXXX"+objectMapper.writeValueAsString(newCar));
         //Login and get the token
         String adminToken = TestUtils.login("xxx-user","test12",mockMvc);
         mockMvc.perform(MockMvcRequestBuilders.post("/api/cars")
