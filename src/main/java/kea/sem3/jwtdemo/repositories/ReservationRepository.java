@@ -7,7 +7,4 @@ import java.time.LocalDate;
 
 public interface ReservationRepository extends JpaRepository<Reservation,Integer> {
     Reservation findReservationByReservedCar_IdAndRentalDate(int id, LocalDate date);
-
-
-
 }

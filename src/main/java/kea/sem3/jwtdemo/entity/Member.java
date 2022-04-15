@@ -63,6 +63,11 @@ public class Member extends BaseUser {
         isApproved = false;
     }
 
+  public Member(String username, String email, String password, String firstName, String lastName, String street, String city, String zip,Role role) {
+    this(username,email, password,firstName,lastName,street,city,zip);
+    this.addRole(role);
+  }
+
     public Member(MemberRequest body) {
         //Just call the constructor above
         this(body.getUsername(),body.getEmail(),body.getPassword(),body.getFirstName(),body.getLastName(),body.getStreet(),body.getCity(),body.getZip());
