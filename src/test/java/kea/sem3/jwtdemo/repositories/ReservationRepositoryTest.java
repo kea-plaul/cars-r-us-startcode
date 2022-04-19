@@ -4,6 +4,7 @@ import kea.sem3.jwtdemo.entity.Car;
 import kea.sem3.jwtdemo.entity.Member;
 import kea.sem3.jwtdemo.entity.Reservation;
 import kea.sem3.jwtdemo.entity.Role;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,15 @@ class ReservationRepositoryTest {
     reservationRepository.save(new Reservation(reservationDate, carRav4, m1));
     reservationRepository.save(new Reservation(reservationDate, carV40, m1));
     reservationRepository.save(new Reservation(LocalDate.of(2022,3,2), carRav4, m1));
+  }
+  @AfterAll
+  static void tearDown(@Autowired CarRepository carRepository,
+                    @Autowired MemberRepository memberRepository,
+                    @Autowired ReservationRepository reservationRepository) {
+    reservationRepository.deleteAll();
+    carRepository.deleteAll();
+    memberRepository.deleteAll();
+
   }
 
   @Test
